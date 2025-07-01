@@ -1,0 +1,22 @@
+#ifndef _binarytree_
+#define _binarytree_
+#include<stdlib.h>
+#include<stdio.h>
+
+typedef struct huffman{
+    unsigned int freq;
+    unsigned char val;
+    struct huffman* left;
+    struct huffman* right;
+} huffman;
+
+huffman * createnode(unsigned int freq , unsigned char val);
+
+
+huffman * insert(unsigned int freq , unsigned char val , huffman* root);
+
+void destroy(huffman * root);
+
+void inorder(huffman * root);
+
+#endif

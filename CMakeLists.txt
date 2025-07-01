@@ -3,4 +3,4 @@ project(Pressy C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(Pressy main.c)
+add_executable(Pressy src/main.c src/huffman.c)
