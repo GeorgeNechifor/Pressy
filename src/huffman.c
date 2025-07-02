@@ -1,6 +1,6 @@
 #include"../include/huffman.h"
 
-huffman * createnode(unsigned int freq , unsigned char val){
+huffman * createnode(unsigned int freq , unsigned char val , huffman * l , huffman * r){
     huffman * node = (huffman*)malloc(sizeof(huffman));
     if(!node){
         perror("Memory allocation failed!");
@@ -8,14 +8,14 @@ huffman * createnode(unsigned int freq , unsigned char val){
     }
     node->val = val;
     node->freq = freq;
-    node->left = NULL;
-    node->right = NULL;
+    node->left = l;
+    node->right = r;
     return node;
 }
 
 huffman * insert(unsigned int freq , unsigned char val , huffman * root){
     if(root == NULL){
-        return createnode(freq , val);
+        return createnode(freq , val , NULL , NULL);
 
     }
     if(freq < root->freq)
