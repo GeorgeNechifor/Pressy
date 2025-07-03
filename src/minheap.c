@@ -38,3 +38,26 @@ huffman * heapextractmin(minheap * heap){
     heap->data[i] = last;
     return min;
 }
+
+
+void makeheap(minheap * heap , int argc , char * argv[]){
+    fileutils * file = createfileutils();
+    makefile(argc , argv , file);
+    for(int i = 0; i < 256;++i){
+        if(file->freq[i]){
+            huffman * leaf = createnode(file->freq[i] , i , NULL , NULL);
+            heapinsert(heap , leaf);
+        }
+    }
+    free(file);
+}
+
+void makehuffman(minheap * heap){
+    while(heap->size >= 2){
+        huffman * l = heapextractmin(heap);
+        huffman * r = heapextractmin(heap);
+        huffman * intermediar = createnode(l->freq + r->freq , 0 , l , r);
+        heapinsert(heap , intermediar);
+
+    }
+}

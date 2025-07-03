@@ -13,17 +13,6 @@ huffman * createnode(unsigned int freq , unsigned char val , huffman * l , huffm
     return node;
 }
 
-huffman * insert(unsigned int freq , unsigned char val , huffman * root){
-    if(root == NULL){
-        return createnode(freq , val , NULL , NULL);
-
-    }
-    if(freq < root->freq)
-        root->left = insert(freq , val , root->left);
-    else
-        root->right = insert(freq , val , root->right);
-    return root;
-}
 
 void destroy(huffman * root){
     if(root){
@@ -36,6 +25,10 @@ void destroy(huffman * root){
 void inorder(huffman * root){
     if(root == NULL) return;
     inorder(root->left);
-    printf("%d " , root->freq);
+    printf("%d " , root->val);
     inorder(root->right);
+}
+
+void generatecodes(huffman * root, char* path) {
+    if(root == NULL) return ;
 }

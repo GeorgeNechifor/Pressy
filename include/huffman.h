@@ -2,6 +2,8 @@
 #define _huffman_
 #include<stdlib.h>
 #include<stdio.h>
+#include"./fileutils.h"
+#include<string.h>
 
 typedef struct huffman{
     unsigned int freq;
@@ -12,11 +14,10 @@ typedef struct huffman{
 
 huffman * createnode(unsigned int freq , unsigned char val , huffman * l , huffman * r);
 
-
-huffman * insert(unsigned int freq , unsigned char val , huffman* root);
-
 void destroy(huffman * root);
 
 void inorder(huffman * root);
+
+void generatecodes(huffman * root , char* path);
 
 #endif

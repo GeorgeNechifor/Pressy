@@ -3,21 +3,19 @@
 #include"../include/fileutils.h"
 #include"../include/minheap.h"
 
-int main(int argc , char ** argv) {
+int main(int argc , char * argv[]) {
 
-    minheap * heap = (minheap*)malloc(sizeof(minheap));
 
+
+    minheap * heap = (minheap*) malloc(sizeof(minheap));
     createheap(heap);
-    huffman * node = NULL;
-    for(int i = 4; i < 10;++i){
-        node = createnode(i,1,NULL , NULL);
-        heapinsert(heap , node);
-    }
-    node = heapextractmin(heap);
-    printf("%d " , node->freq);
+    huffman * root = NULL;
+    makeheap(heap , argc , argv);
+    makehuffman(heap);
+    root = heapextractmin(heap);
 
-    free(node);
     free(heap);
+    destroy(root);
 
     return 0;
 }
