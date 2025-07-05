@@ -12,12 +12,18 @@ typedef struct huffman{
     struct huffman * right;
 } huffman;
 
+typedef struct huffmancode{
+    unsigned long long code[256];
+    unsigned long long codelength[256];
+} huffmancode;
+
 huffman * createnode(unsigned int freq , unsigned char val , huffman * l , huffman * r);
 
 void destroy(huffman * root);
 
-void inorder(huffman * root);
+void concatbin(int bin , unsigned long long bincode);
 
-void generatecodes(huffman * root , char* path);
+void generatehuffmancodes(huffman * root , int path[] , int pathlength , huffmancode * hc);
+
 
 #endif

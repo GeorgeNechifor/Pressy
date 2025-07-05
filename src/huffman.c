@@ -13,7 +13,6 @@ huffman * createnode(unsigned int freq , unsigned char val , huffman * l , huffm
     return node;
 }
 
-
 void destroy(huffman * root){
     if(root){
         destroy(root->left);
@@ -22,13 +21,24 @@ void destroy(huffman * root){
     }
 }
 
-void inorder(huffman * root){
-    if(root == NULL) return;
-    inorder(root->left);
-    printf("%d " , root->val);
-    inorder(root->right);
+void concatbin(int bin , unsigned long long bincode) {
+    bincode <<= 1;
+    if (bin) bincode |= 1;
 }
+void generatehuffmancodes(huffman * root, int path[] , int pathlength ,huffmancode * hc) {
+    if (root == NULL) return;
 
-void generatecodes(huffman * root, char* path) {
-    if(root == NULL) return ;
+    if (root->left == NULL && root->right == NULL) {
+        unsigned long long bincode = 0;
+        for (int i = 0; i < pathlength; i++) {
+            concatbin(path[i] , bincode);
+        }
+        hc->codelength[root->val] = pathlength;
+        hc->code[root->val] = bincode;
+    } else {
+        path[pathlength] = 0;
+        generatehuffmancodes(root->left, path, pathlength + 1 , hc);
+        path[pathlength] = 1;
+        generatehuffmancodes(root->right, path, pathlength + 1 , hc);
+    }
 }
