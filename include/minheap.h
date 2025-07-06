@@ -17,7 +17,7 @@ void heapinsert(minheap* heap , huffman * node);
 huffman * heapextractmin(minheap * heap);
 
 
-void makeheap(minheap * heap , int argc , char * argv[]);
+void makeheap(minheap * heap , int argc , char * argv[] , fileutils * file);
 
 void makehuffman(minheap * heap);
 

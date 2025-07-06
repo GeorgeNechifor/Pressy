@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
+    <option name="projectFiles" value="$PROJECT_DIR$/include/fileutils.h;C:/Pressy/include/huffman.h;C:/Pressy/include/minheap.h;C:/Pressy/src/fileutils.c;C:/Pressy/src/huffman.c;C:/Pressy/src/main.c;C:/Pressy/src/minheap.c" />
+  </component>
+</project>

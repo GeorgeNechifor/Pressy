@@ -40,16 +40,15 @@ huffman * heapextractmin(minheap * heap){
 }
 
 
-void makeheap(minheap * heap , int argc , char * argv[]){
-    fileutils * file = createfileutils();
-    makefile(argc , argv , file);
+void makeheap(minheap * heap , int argc , char * argv[] , fileutils * file){
+    makeinputfile(argc , argv , file);
+    makeoutputfile(argc , argv , file);
     for(int i = 0; i < 256;++i){
         if(file->freq[i]){
             huffman * leaf = createnode(file->freq[i] , i , NULL , NULL);
             heapinsert(heap , leaf);
         }
     }
-    free(file);
 }
 
 void makehuffman(minheap * heap){

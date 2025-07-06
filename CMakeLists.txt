@@ -6,4 +6,5 @@ set(CMAKE_C_STANDARD 11)
 add_executable(Pressy src/main.c
         src/huffman.c
         src/minheap.c
-        src/fileutils.c)
+        src/fileutils.c
+        src/pressy.c)
