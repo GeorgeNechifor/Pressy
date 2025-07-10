@@ -7,7 +7,7 @@ Windows Registry Editor Version 5.00
 @="PressyFile"
 
 [HKEY_CLASSES_ROOT\PressyFile\DefaultIcon]
-@="\"C:\\Pressy\\register\\psy.ico\""
+@="\"C:\\Pressy\\register\\pressy.ico\""
 
 [HKEY_CLASSES_ROOT\PressyFile\shell\open\command]
 @="\"C:\\Pressy\\cmake-build-debug\\Pressy.exe\" \"%1\""

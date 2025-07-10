@@ -16,17 +16,18 @@ typedef struct huffman{
 typedef struct huffmancode{
     unsigned long long code[MAX_SIZE];
     unsigned int codelength[MAX_SIZE];
+    unsigned int nodes;
 } huffmancode;
 
 huffman * createnode(unsigned int freq , unsigned char val , huffman * l , huffman * r);
 
 void destroy(huffman * root);
 
-void printbits(unsigned long long code , unsigned int length);
-
 void generatehuffmancodes(huffman * root , int path[] , int pathlength , huffmancode * hc);
 
-void compress(huffmancode * hc , fileutils * file);
+void savehuffman(huffman * root , fileutils * file);
+
+void compress(huffmancode * hc , fileutils * file , huffman * root);
 
 
 #endif

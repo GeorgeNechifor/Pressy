@@ -21,15 +21,9 @@ void destroy(huffman * root){
     }
 }
 
-void printbits(unsigned long long code , unsigned int length){
-    for (int i = length - 1; i >= 0; --i) {
-        printf("%d", (code >> i) & 1);
-    }
-}
-
 void generatehuffmancodes(huffman * root, int path[] , int pathlength ,huffmancode * hc) {
     if (root == NULL) return;
-
+    hc->nodes++;
     if (root->left == NULL && root->right == NULL) {
         unsigned long long bincode = 0;
         for (int i = 0; i < pathlength; i++) {
@@ -46,7 +40,26 @@ void generatehuffmancodes(huffman * root, int path[] , int pathlength ,huffmanco
     }
 }
 
-void compress(huffmancode * hc , fileutils * file){
+void savehuffman(huffman * root , fileutils * file){
+    if(root == NULL) return;
+    savehuffman(root->left , file);
+    savehuffman(root->right , file);
+    if(root->left == NULL && root->right == NULL){
+        unsigned char marker = 1;
+        fwrite(&marker , 1 , 1 , file->outputfile);
+        fwrite(&(root->val) , 1 , 1 , file->outputfile);
+    }
+    else{
+        unsigned char marker = 0;
+        fwrite(&marker , 1 , 1 , file->outputfile);
+    }
+}
+
+void compress(huffmancode * hc , fileutils * file , huffman * root){
+    const char* sign = "psy";
+    fwrite(sign , sizeof(const char) , 1 , file->outputfile);
+    fwrite(&hc->nodes , sizeof(unsigned int) , 1 , file->outputfile);
+    savehuffman(root , file);
     unsigned char bitbuffer = 0;
     int bitcount = 0;
     for(int i = 0; i < 256;++i){

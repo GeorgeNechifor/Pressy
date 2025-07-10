@@ -11,8 +11,6 @@ fileutils * createfileutils(){
 }
 
 void makeinputfile(int argc,  char *argv[] , fileutils * file){
-    if(argc != 2) exit(EXIT_FAILURE);
-
     file->inputfile = fopen(argv[1] , "rb");
     if(!file->inputfile){
         perror("Invalid file!");
@@ -39,8 +37,6 @@ void generateinputfilename(const char * inputpath , char * outputpath , size_t m
 }
 
 void makeoutputfile(int argc , char * argv[] , fileutils * file){
-    if(argc != 2) exit(EXIT_FAILURE);
-
     generateinputfilename(argv[1] , file->outputfilename , sizeof(file->outputfilename));
     file->outputfile = fopen(file->outputfilename , "wb");
     if(!file->outputfile){
